@@ -67,12 +67,18 @@ export default function SoilForm() {
             <div className="mb-6">
               <h4 className="font-semibold text-lg text-gray-800 mb-3">Parameter Modifications</h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {Object.entries(responseData.recommended_crop.parameter_modifications).map(([param, suggestion]) => (
-                  <div key={param} className="bg-gray-50 p-4 rounded-lg hover:shadow-md transition-shadow duration-300">
-                    <p className="font-medium text-gray-700 capitalize font-['Poppins']">{param}</p>
-                    <p className="text-sm text-gray-600 font-['Inter'] mt-1">{suggestion}</p>
+                {responseData.recommended_crop.parameter_modifications === "No major adjustments needed" ? (
+                  <div className="bg-gray-50 p-4 rounded-lg hover:shadow-md transition-shadow duration-300">
+                    <p className="font-medium text-gray-700 capitalize font-['Poppins']">No major modifications needed</p>
                   </div>
-                ))}
+                ) : (
+                  Object.entries(responseData.recommended_crop.parameter_modifications).map(([param, suggestion]) => (
+                    <div key={param} className="bg-gray-50 p-4 rounded-lg hover:shadow-md transition-shadow duration-300">
+                      <p className="font-medium text-gray-700 capitalize font-['Poppins']">{param}</p>
+                      <p className="text-sm text-gray-600 font-['Inter'] mt-1">{suggestion}</p>
+                    </div>
+                  ))
+                )}
               </div>
             </div>
 
